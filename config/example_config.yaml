@@ -1,0 +1,73 @@
+%YAML:1.0
+---
+# 相机内参 (示例)
+camera_matrix: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [  1.8031236189499991e+03, 0., 7.0934715470774881e+02, 0.,
+       1.8026797120136421e+03, 5.4356057701037935e+02, 0., 0., 1. ]
+
+# 畸变系数
+dist_coeffs: !!opencv-matrix
+  rows: 5
+  cols: 1
+  dt: d
+  data: [-8.0141197441296649e-02, 2.3090296118985287e-01,
+       -1.7706563099783139e-04, 3.3945840846640626e-04,
+       -4.4481086302767137e-01 ]
+
+# ArUco 字典与标签大小
+aruco_dict_id: 0  
+aruco_marker_length: 0.60
+
+# ArUco 中心点到地面高度 (米)
+H_marker: 0.325
+
+# 数据记录相关参数
+record_enabled: 1  # 1 表示启用记录, 0 表示禁用
+launch_rpm: 3939   # 发射时的转速 (RPM)
+record_dir: "../records"  # 保存CSV的文件夹
+max_ball_gap: 120    # 若两帧中心距超过该像素值，则视为误检并断开轨迹
+
+# ROI 检测区域 (0~0.5): 左右/上下可单独设置
+roi_left_margin_ratio: 0.10   # 左侧去除10%
+roi_right_margin_ratio: 0.10  # 右侧去除10%
+roi_top_margin_ratio: 0.05   # 上方去除5%
+roi_bottom_margin_ratio: 0.0 # 底部不去除
+
+roi_side_margin_ratio: 0.0
+
+origin_offset: !!opencv-matrix  #aruco到发射机构的偏移
+  rows: 1
+  cols: 3
+  dt: d
+  data: [ 0.775, 5.0, -5.37 ]
+
+# HSV 阈值
+hsv_low: !!opencv-matrix
+  rows: 1
+  cols: 3
+  dt: i
+  data: [ 0, 0, 0 ]
+hsv_high: !!opencv-matrix
+  rows: 1
+  cols: 3
+  dt: i
+  data: [ 255, 255, 255 ]
+
+# 运动平面
+motion_plane:
+  point: !!opencv-matrix
+    rows: 1
+    cols: 3
+    dt: d
+    data: [ 0.0, 0.0, -5.47 ]
+  normal: !!opencv-matrix
+    rows: 1
+    cols: 3
+    dt: d
+    data: [ 0.0, 0.0, 1.0 ]
+
+# ROI 视频保存目录
+roi_video_dir: "../roi_videos"
